@@ -103,5 +103,12 @@ public interface Constant {
     /**
      * 服务提供端口
      */
-    int PORT = 5001;
+    int REGISTER_PORT = 5001;
+
+    // ============ 普通常量 ============
+
+    /**
+     * 下游请求地址
+     */
+    int REMOTE_PORT = 4001;
 }
