@@ -60,6 +60,16 @@ public interface Constant {
     byte REGISTER_RESP_REG_CLASS = 4;
 
     /**
+     * 心跳请求
+     */
+    byte REGISTER_PING_REQ = 5;
+
+    /**
+     * 心跳响应
+     */
+    byte REGISTER_PONG_RESP = 6;
+
+    /**
      * 发送给远程下游的请求
      */
     byte REMOTE_REQ = 11;
