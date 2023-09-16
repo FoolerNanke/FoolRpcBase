@@ -1,6 +1,6 @@
 package com.scj.foolRpcBase.handler.in;
 
-import com.scj.foolRpcBase.constant.BaseLocalCache;
+import com.scj.foolRpcBase.serialize.FoolSerializeCache;
 import com.scj.foolRpcBase.constant.Constant;
 import com.scj.foolRpcBase.entity.*;
 import com.scj.foolRpcBase.exception.ExceptionEnum;
@@ -61,25 +61,25 @@ public class FoolProtocolDecode extends ByteToMessageDecoder {
         foolProtocol.setSerializableType(serializeType);
         foolProtocol.setReqId(reqId);
         // 消息体反序列化
-        FoolSerialize foolSerialize = BaseLocalCache.getFoolSerialize(serializeType);
+        FoolSerialize foolSerialize = FoolSerializeCache.getFoolSerialize(serializeType);
         // 填充消息体
         Object obj = null;
         switch (remoteType) {
             case Constant.REMOTE_REQ:
-                obj = foolSerialize.deSerialize(data, FoolRequest.class);
+                obj = foolSerialize.deSerialize(data, FoolRemoteReq.class);
                 break;
             case Constant.REMOTE_RESP:
-                obj = foolSerialize.deSerialize(data, FoolResponse.class);
+                obj = foolSerialize.deSerialize(data, FoolRemoteResp.class);
                 break;
             case Constant.REGISTER_REQ_REG_CLASS:
             case Constant.REGISTER_REQ_GET_IP:
             case Constant.REGISTER_PING_REQ:
-                obj = foolSerialize.deSerialize(data, FoolRegisterReq.class);
+                obj = foolSerialize.deSerialize(data, FoolCommonReq.class);
                 break;
             case Constant.REGISTER_RESP_REG_CLASS:
             case Constant.REGISTER_RESP_GET_IP:
             case Constant.REGISTER_PONG_RESP:
-                obj = foolSerialize.deSerialize(data, FoolRegisterResp.class);
+                obj = foolSerialize.deSerialize(data, FoolCommonResp.class);
                 break;
             default:
                 break;
