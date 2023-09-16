@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @description 注册中心注册请求体
  */
 
-public class FoolRegisterReq implements Serializable {
+public class FoolCommonReq implements Serializable {
 
     /**
      * 应用名称

@@ -1,5 +1,7 @@
 package com.scj.foolRpcBase.constant;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author suchangjie.NANKE
  * @Title: Constant

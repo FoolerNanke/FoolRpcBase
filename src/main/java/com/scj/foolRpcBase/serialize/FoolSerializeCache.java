@@ -1,8 +1,6 @@
-package com.scj.foolRpcBase.constant;
+package com.scj.foolRpcBase.serialize;
 
-import com.scj.foolRpcBase.serialize.FoolSerialize;
-import com.scj.foolRpcBase.serialize.HessianSerialize;
-import io.netty.util.concurrent.Promise;
+import com.scj.foolRpcBase.constant.Constant;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2023/8/21 21:04
  * @description 本地缓存
  */
-public class BaseLocalCache {
+public class FoolSerializeCache {
 
     /**
      * 序列化存储对象
@@ -21,13 +19,6 @@ public class BaseLocalCache {
      * value:FoolSerialize->Bean
      */
     private static final Map<Byte, FoolSerialize> SerializeMap = new ConcurrentHashMap<>();
-
-    /**
-     * 服务提供方存储对象
-     * key:fullClassName
-     * value:Bean
-     */
-    private static final Map<String, Object> ProviderMap = new ConcurrentHashMap<>();
 
     static {
         /*
@@ -45,23 +36,5 @@ public class BaseLocalCache {
         FoolSerialize serialize = SerializeMap.getOrDefault(type, null);
         if (serialize == null) return getFoolSerialize((byte) 0);
         return serialize;
-    }
-
-    /**
-     * 新增响应实例
-     * @param name 全类名
-     * @param obj 对象
-     */
-    public static void put(String name, Object obj){
-        ProviderMap.put(name, obj);
-    }
-
-    /**
-     * 获取响应实例
-     * @param name 全类名
-     * @return Object->Bean
-     */
-    public static Object get(String name){
-        return ProviderMap.get(name);
     }
 }

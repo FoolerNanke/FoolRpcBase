@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @date 2023/8/19 21:34
  * @description 请求回复
  */
-public class FoolResponse implements Serializable {
+public class FoolRemoteResp implements Serializable {
 
     // 回复对象全类名
     private String fullClassName;

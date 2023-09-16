@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @description 远程请求类
  */
 
-public class FoolRequest implements Serializable {
+public class FoolRemoteReq implements Serializable {
 
     // 请求全类名
     private String fullClassName;

@@ -1,6 +1,6 @@
 package com.scj.foolRpcBase.handler.out;
 
-import com.scj.foolRpcBase.constant.BaseLocalCache;
+import com.scj.foolRpcBase.serialize.FoolSerializeCache;
 import com.scj.foolRpcBase.entity.FoolProtocol;
 import com.scj.foolRpcBase.serialize.FoolSerialize;
 import io.netty.buffer.ByteBuf;
@@ -30,7 +30,7 @@ public class FoolProtocolEncode<T> extends MessageToByteEncoder<FoolProtocol<T>>
         // 写入请求ID
         byteBuf.writeLong(foolProtocol.getReqId());
         // 获取序列化实例
-        FoolSerialize foolSerialize = BaseLocalCache.getFoolSerialize(foolProtocol.getSerializableType());
+        FoolSerialize foolSerialize = FoolSerializeCache.getFoolSerialize(foolProtocol.getSerializableType());
         // 序列化请求体数据
         byte[] data = foolSerialize.serialize(foolProtocol.getData());
         // 写入请求体长度
