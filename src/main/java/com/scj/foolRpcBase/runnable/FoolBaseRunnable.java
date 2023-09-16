@@ -1,5 +1,8 @@
 package com.scj.foolRpcBase.runnable;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
 /**
  * @author suchangjie.NANKE
  * @Title: PingPongScheduler
@@ -18,7 +21,7 @@ public abstract class FoolBaseRunnable implements Runnable {
     /**
      * run的核心步骤
      */
-    public abstract void doRun();
+    public abstract void doRun() throws Throwable;
 
     /**
      * 心跳检测结束
@@ -30,7 +33,7 @@ public abstract class FoolBaseRunnable implements Runnable {
      * 心跳检测失败
      * 基类进行处理
      */
-    public abstract void handError();
+    public abstract void handError(Throwable t);
 
     @Override
     public void run() {
@@ -39,7 +42,7 @@ public abstract class FoolBaseRunnable implements Runnable {
             doRun();
             afterRun();
         } catch (Throwable t){
-            handError();
+            handError(t);
         }
     }
 }

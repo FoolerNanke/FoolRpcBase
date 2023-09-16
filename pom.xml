@@ -26,6 +26,26 @@
       <version>4.1.86.Final</version>
     </dependency>
 
+    <!--使用slf4j必须添加-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+    <!--slf4j自带的简单日志实现 -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.27</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.28</version>
+      <scope>compile</scope>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

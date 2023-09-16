@@ -64,12 +64,12 @@ public interface Constant {
     /**
      * 心跳请求
      */
-    byte REGISTER_PING_REQ = 5;
+    byte PING_REQ = 5;
 
     /**
      * 心跳响应
      */
-    byte REGISTER_PONG_RESP = 6;
+    byte PONG_RESP = 6;
 
     /**
      * 发送给远程下游的请求
@@ -123,4 +123,16 @@ public interface Constant {
      * 下游请求地址
      */
     int REMOTE_PORT = 4001;
+
+    // ============ 心跳常量 ============
+
+    /**
+     * 心跳时间间隔
+     */
+    public static long PING_PONG_TIME_GAP = 20000;
+
+    /**
+     * 心跳时间间隔
+     */
+    public static TimeUnit PING_PONG_TIME_UNIT = TimeUnit.MILLISECONDS;
 }
