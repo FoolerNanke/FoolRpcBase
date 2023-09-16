@@ -3,6 +3,7 @@ package com.scj.foolRpcBase.handler.resp;
 import com.scj.foolRpcBase.constant.Constant;
 import com.scj.foolRpcBase.constant.RespCache;
 import com.scj.foolRpcBase.entity.FoolProtocol;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.concurrent.Promise;
@@ -14,6 +15,7 @@ import io.netty.util.concurrent.Promise;
  * @description 响应最终处理器
  *              将响应信息写入promise
  */
+@ChannelHandler.Sharable
 public class FoolRespHandler extends SimpleChannelInboundHandler<FoolProtocol<?>> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx
