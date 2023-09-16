@@ -15,17 +15,12 @@ public interface Constant {
     /**
      * 消费者进行远程链接时的线程处理数量
      */
-    int NUMBER_OF_REQ_WORKER = 4;
-
-    /**
-     * 消费者进行远程链接时的线程处理数量
-     */
     int NUMBER_OF_RESP_PROMISE_WORKER = 4;
 
     /**
-     * 注册中心链接处理的线程处理数量
+     * 心跳检测线程池处理数量
      */
-    int NUMBER_OF_REGISTER_WORKER = 4;
+    int NUMBER_OF_PING_PONG_WORKER = 4;
 
     /**
      * 字符串间隔

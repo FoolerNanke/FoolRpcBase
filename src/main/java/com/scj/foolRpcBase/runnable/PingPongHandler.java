@@ -5,7 +5,8 @@ import com.scj.foolRpcBase.constant.RespCache;
 import com.scj.foolRpcBase.entity.FoolCommonReq;
 import com.scj.foolRpcBase.entity.FoolProtocol;
 import io.netty.channel.Channel;
-import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.DefaultEventLoopGroup;
+import io.netty.channel.EventLoopGroup;
 import io.netty.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @description: //TODO
  */
 @Slf4j
-public class DefaultPingPongRunnable extends FoolBaseRunnable{
+public class PingPongHandler extends FoolBaseRunnable{
 
     /**
      * 存储指定ip_port的有效截止时间
@@ -32,22 +33,23 @@ public class DefaultPingPongRunnable extends FoolBaseRunnable{
     /**
      * 心跳检测执行线程池
      */
-    private final NioEventLoopGroup eventExecutors;
+    private static final EventLoopGroup eventExecutors
+            = new DefaultEventLoopGroup(Constant.NUMBER_OF_PING_PONG_WORKER);
 
     /**
      * 被检测的通道
      */
-    private final Channel channel;
+    public final Channel channel;
 
     /**
      * 被检测的ip+port
      */
-    private final String ip_port;
+    public final String ip_port;
 
-    public DefaultPingPongRunnable(NioEventLoopGroup eventExecutors, Channel channel) {
-        this.eventExecutors = eventExecutors;
+    public PingPongHandler(Channel channel) {
         this.channel = channel;
         this.ip_port = channel.remoteAddress().toString();
+        eventExecutors.submit(this);
     }
 
     @Override
@@ -108,5 +110,14 @@ public class DefaultPingPongRunnable extends FoolBaseRunnable{
         log.info("心跳检测异常 error:{} ip_port:{}"
                 , t.getMessage()
                 , ip_port);
+    }
+
+    /**
+     * 添加通道保活时间
+     * @param channel 通道
+     */
+    public static void addTime(Channel channel){
+        String ip_port = channel.remoteAddress().toString();
+        ipMap.put(ip_port, System.currentTimeMillis() + Constant.PING_PONG_TIME_GAP);
     }
 }
