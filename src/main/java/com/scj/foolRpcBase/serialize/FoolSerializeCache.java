@@ -1,7 +1,6 @@
 package com.scj.foolRpcBase.serialize;
 
 import com.scj.foolRpcBase.constant.Constant;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

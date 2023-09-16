@@ -74,12 +74,17 @@ public class FoolProtocolDecode extends ByteToMessageDecoder {
             case Constant.REGISTER_REQ_REG_CLASS:
             case Constant.REGISTER_REQ_GET_IP:
             case Constant.REGISTER_PING_REQ:
+                // 请求
                 obj = foolSerialize.deSerialize(data, FoolCommonReq.class);
                 break;
             case Constant.REGISTER_RESP_REG_CLASS:
             case Constant.REGISTER_RESP_GET_IP:
             case Constant.REGISTER_PONG_RESP:
+                // 响应
+                // 收到响应表明被请求对象健在
+                // 可以延迟下一次心跳请求时间
                 obj = foolSerialize.deSerialize(data, FoolCommonResp.class);
+                // 心跳延服务
                 break;
             default:
                 break;
