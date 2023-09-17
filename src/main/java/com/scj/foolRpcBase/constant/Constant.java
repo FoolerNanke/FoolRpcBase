@@ -15,17 +15,12 @@ public interface Constant {
     /**
      * 消费者进行远程链接时的线程处理数量
      */
-    int NUMBER_OF_REQ_WORKER = 4;
-
-    /**
-     * 消费者进行远程链接时的线程处理数量
-     */
     int NUMBER_OF_RESP_PROMISE_WORKER = 4;
 
     /**
-     * 注册中心链接处理的线程处理数量
+     * 心跳检测线程池处理数量
      */
-    int NUMBER_OF_REGISTER_WORKER = 4;
+    int NUMBER_OF_PING_PONG_WORKER = 4;
 
     /**
      * 字符串间隔
@@ -64,12 +59,12 @@ public interface Constant {
     /**
      * 心跳请求
      */
-    byte REGISTER_PING_REQ = 5;
+    byte PING_REQ = 5;
 
     /**
      * 心跳响应
      */
-    byte REGISTER_PONG_RESP = 6;
+    byte PONG_RESP = 6;
 
     /**
      * 发送给远程下游的请求
@@ -123,4 +118,16 @@ public interface Constant {
      * 下游请求地址
      */
     int REMOTE_PORT = 4001;
+
+    // ============ 心跳常量 ============
+
+    /**
+     * 心跳时间间隔
+     */
+    long PING_PONG_TIME_GAP = 10000;
+
+    /**
+     * 心跳时间间隔
+     */
+    TimeUnit PING_PONG_TIME_UNIT = TimeUnit.MILLISECONDS;
 }

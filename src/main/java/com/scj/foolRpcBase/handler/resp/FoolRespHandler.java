@@ -20,8 +20,9 @@ public class FoolRespHandler extends SimpleChannelInboundHandler<FoolProtocol<?>
     @Override
     protected void channelRead0(ChannelHandlerContext ctx
             , FoolProtocol<?> foolProtocol) {
-        if (foolProtocol.getRemoteType() == Constant.REGISTER_PONG_RESP
-                || foolProtocol.getRemoteType() == Constant.REMOTE_RESP ){
+        if (foolProtocol.getRemoteType() == Constant.PONG_RESP
+                || foolProtocol.getRemoteType() == Constant.REMOTE_RESP
+                || foolProtocol.getRemoteType() == Constant.REGISTER_RESP_GET_IP){
             Promise<Object> promise = RespCache.getPromise(foolProtocol);
             promise.setSuccess(foolProtocol.getData());
         }
