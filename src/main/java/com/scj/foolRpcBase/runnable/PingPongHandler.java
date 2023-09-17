@@ -49,6 +49,7 @@ public class PingPongHandler extends FoolBaseRunnable{
     public PingPongHandler(Channel channel) {
         this.channel = channel;
         this.ip_port = channel.remoteAddress().toString();
+        ipMap.put(ip_port, System.currentTimeMillis() + Constant.PING_PONG_TIME_GAP);
         eventExecutors.submit(this);
     }
 

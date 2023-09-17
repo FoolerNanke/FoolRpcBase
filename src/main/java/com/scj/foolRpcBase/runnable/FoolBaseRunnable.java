@@ -1,8 +1,5 @@
 package com.scj.foolRpcBase.runnable;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
 /**
  * @author suchangjie.NANKE
  * @Title: PingPongScheduler
