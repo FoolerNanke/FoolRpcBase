@@ -29,7 +29,7 @@ public class PingPongRespHandler extends SimpleChannelInboundHandler<FoolProtoco
             respFoolProtocol.setData(new FoolCommonResp());
             log.info("收到心跳请求 reqId = {}", protocol.getReqId());
             ctx.writeAndFlush(respFoolProtocol);
-            ctx.fireChannelRead(protocol);
         }
+        ctx.fireChannelRead(protocol);
     }
 }
