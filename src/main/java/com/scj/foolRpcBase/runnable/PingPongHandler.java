@@ -46,11 +46,21 @@ public class PingPongHandler extends FoolBaseRunnable{
      */
     public final String ip_port;
 
-    public PingPongHandler(Channel channel) {
+    /**
+     * 心跳间隔
+     */
+    public final long gap;
+
+    public PingPongHandler(Channel channel, long gap) {
         this.channel = channel;
         this.ip_port = channel.remoteAddress().toString();
-        ipMap.put(ip_port, System.currentTimeMillis() + Constant.PING_PONG_TIME_GAP);
+        this.gap = gap;
+        ipMap.put(ip_port, System.currentTimeMillis() + gap);
         eventExecutors.submit(this);
+    }
+
+    public PingPongHandler(Channel channel){
+        this(channel, Constant.PING_PONG_TIME_GAP);
     }
 
     @Override
@@ -96,14 +106,13 @@ public class PingPongHandler extends FoolBaseRunnable{
         // 成功获取到下游响应 说明没毛病
         // 将本任务再次加入执行线程池
         eventExecutors.schedule(this
-                , Constant.PING_PONG_TIME_GAP
+                , gap
                 , Constant.PING_PONG_TIME_UNIT);
         // 成功收到一次响应
         // 将有效时间进行延长
         // 延长时间
         ipMap.put(ip_port,
-                System.currentTimeMillis()
-                        + Constant.PING_PONG_TIME_GAP);
+                System.currentTimeMillis() + gap);
     }
 
     @Override

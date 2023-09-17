@@ -124,10 +124,10 @@ public interface Constant {
     /**
      * 心跳时间间隔
      */
-    public static long PING_PONG_TIME_GAP = 20000;
+    long PING_PONG_TIME_GAP = 10000;
 
     /**
      * 心跳时间间隔
      */
-    public static TimeUnit PING_PONG_TIME_UNIT = TimeUnit.MILLISECONDS;
+    TimeUnit PING_PONG_TIME_UNIT = TimeUnit.MILLISECONDS;
 }
