@@ -10,13 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author: suchangjie.NANKE
- * @Title: PingPongRespHandler
+ * @Title: PingPongReqHandler
  * @date: 2023/9/17
  * @description: //TODO
  */
 @ChannelHandler.Sharable
 @Slf4j
-public class PingPongRespHandler extends SimpleChannelInboundHandler<FoolProtocol<?>> {
+public class PingPongReqHandler extends SimpleChannelInboundHandler<FoolProtocol<?>> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
