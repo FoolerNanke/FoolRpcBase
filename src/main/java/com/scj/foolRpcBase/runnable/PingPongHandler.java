@@ -11,6 +11,7 @@ import io.netty.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -76,7 +77,6 @@ public class PingPongHandler extends FoolBaseRunnable{
             eventExecutors.schedule(this
                     , val - time
                     , Constant.PING_PONG_TIME_UNIT);
-            log.info("心跳成功 ip_port:{}", channel.remoteAddress().toString());
             return false;
         } else {
             return true;
